@@ -1,0 +1,22 @@
+import os
+
+if not os.path.exists("images"):
+    os.makedirs("images")
+
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 800
+BOARD_SIZE = 8
+CELL_SIZE = WINDOW_WIDTH // BOARD_SIZE
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GRAY = (128, 128, 128)
+LIGHT_BROWN = (240, 217, 181)
+DARK_BROWN = (181, 136, 99)
+HIGHLIGHT = (186, 202, 68)
+CAPTURE_HIGHLIGHT = (255, 0, 0)
+CHECK_HIGHLIGHT = (255, 100, 100)
+UNDER_ATTACK = (255, 165, 0)
+
+USE_IMAGES = True
+IMAGE_PATH = "images/"
