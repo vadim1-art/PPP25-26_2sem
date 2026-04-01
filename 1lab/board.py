@@ -83,11 +83,8 @@ class Board:
         return False
 
     def is_move_safe(self, from_row, from_col, to_row, to_col):
-        """Проверяет, не оставляет ли ход короля под шахом"""
-        # Создаем копию доски
         temp_board = self.copy_board()
 
-        # Делаем ход на копии
         piece = temp_board.grid[from_row][from_col]
         target = temp_board.grid[to_row][to_col]
 
@@ -100,14 +97,12 @@ class Board:
             else:
                 temp_board.black_king_pos = (to_row, to_col)
 
-        # Проверяем, не под шахом ли король после хода
         king_pos = temp_board.white_king_pos if piece.color == 'white' else temp_board.black_king_pos
         opponent = 'black' if piece.color == 'white' else 'white'
 
         return not temp_board.is_square_attacked(king_pos[0], king_pos[1], opponent)
 
     def copy_board(self):
-        """Создает глубокую копию доски"""
         temp_board = Board()
         temp_board.grid = [[None for _ in range(8)] for _ in range(8)]
 
@@ -207,21 +202,18 @@ class Board:
             self.game_over_message = "ПАТ! Ничья!"
 
     def is_in_checkmate(self, color):
-        """Проверяет, мат ли цвету color"""
         if not self.is_in_check(color):
             return False
 
         return not self.has_any_legal_moves(color)
 
     def is_in_stalemate(self, color):
-        """Проверяет, пат ли цвету color"""
         if self.is_in_check(color):
             return False
 
         return not self.has_any_legal_moves(color)
 
     def has_any_legal_moves(self, color):
-        """Проверяет, есть ли у цвета хоть один легальный ход"""
         for r in range(8):
             for c in range(8):
                 piece = self.get_piece(r, c)
